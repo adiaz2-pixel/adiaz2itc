@@ -10,10 +10,30 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 .w3-sidebar {width: 120px; background: #222;}
-#main {margin-left: 120px; margin-top: 50px;} /* top margin for navbar */
-.w3-top-navbar {position: fixed; top: 0; left: 120px; right: 0; height: 50px; background: #111; z-index: 1000;}
-.w3-top-navbar a {color: white; text-decoration: none; padding: 14px 20px; display: inline-block;}
-.w3-top-navbar a:hover {background-color: #575757;}
+#main {margin-left: 120px; margin-top: 50px;} /* space for navbar */
+.w3-top-navbar {
+  position: fixed;
+  top: 0;
+  left: 120px;
+  right: 0;
+  height: 50px;
+  background: #111;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.w3-top-navbar button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 14px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.w3-top-navbar button:hover {
+  background-color: #575757;
+}
 @media only screen and (max-width: 600px) {
   #main {margin-left: 0; margin-top: 50px;}
   .w3-sidebar {width: 0; display: none;}
@@ -39,11 +59,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   </a>
 </nav>
 
-<!-- Top Navbar -->
+<!-- Top Navbar (buttons only for now) -->
 <div class="w3-top-navbar w3-hide-small w3-hide-medium">
-  <a href="#portfolio">Portfolio</a>
-  <a href="#skills">Skills</a>
-  <a href="#blog">Blog</a>
+  <button>Portfolio</button>
+  <button>Skills</button>
+  <button>Blog</button>
 </div>
 
 <!-- Main Content -->
