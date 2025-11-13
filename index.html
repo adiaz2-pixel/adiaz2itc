@@ -8,43 +8,144 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif;}
-.w3-top {z-index: 1000;}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-sidebar {width: 120px; background: #222;}
+#main {margin-left: 120px; margin-top: 50px;} /* space for navbar */
+.w3-top-navbar {
+  position: fixed;
+  top: 0;
+  left: 120px;
+  right: 0;
+  height: 50px;
+  background: #111;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.w3-top-navbar button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 14px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.w3-top-navbar button:hover {
+  background-color: #575757;
+}
+.w3-dropdown-hover {
+  position: relative;
+  display: inline-block;
+}
+.w3-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  z-index: 1;
+}
+.w3-dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.w3-dropdown-hover:hover .w3-dropdown-content {
+  display: block;
+}
+@media only screen and (max-width: 600px) {
+  #main {margin-left: 0; margin-top: 50px;}
+  .w3-sidebar {width: 0; display: none;}
+  .w3-top-navbar {left: 0;}
+}
 </style>
 </head>
 <body class="w3-black">
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
-    <!-- Home link -->
-    <a href="index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>ABOUT</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
 
-    <!-- Dropdown for Adding 2 Numbers -->
-    <div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-button w3-padding-large">Adding 2 Numbers
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="add2Numbers.html" class="w3-bar-item w3-button">Manual Version</a>
-        <a href="add2NumbersAutomatic.html" class="w3-bar-item w3-button">Automatic Version</a>
-      </div>
+<!-- Top Navbar with Dropdown for Adding 2 Numbers -->
+<div class="w3-top-navbar w3-hide-small w3-hide-medium">
+  <div class="w3-dropdown-hover">
+    <button class="w3-padding-large w3-button">Adding 2 Numbers <i class="fa fa-caret-down"></i></button>
+    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+      <a href="add2Numbers.html" class="w3-bar-item w3-button">Manual Version</a>
+      <a href="add2NumbersAutomatic.html" class="w3-bar-item w3-button">Automatic Version</a>
     </div>
   </div>
+
+  <button>Grade Computation</button>
+  <button>Shopping Carts</button>
 </div>
 
 <!-- Main Content -->
-<div class="w3-content w3-padding-64" style="margin-top:70px;">
-  <header class="w3-container w3-padding-32 w3-center">
-    <h1 class="w3-jumbo w3-text-green">I'm Arlton Lance Diaz</h1>
-    <p>Ateneo de Davao University - BSIT-1B Student</p>
+<div class="w3-padding-large" id="main">
+
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Arlton Lance Diaz.</h1>
+    <p>Ateneo de Davao University and BSIT-1B student.</p>
   </header>
 
-  <div class="w3-container w3-text-grey w3-padding-64">
-    <h2>Welcome to my website!</h2>
-    <p>Use the top navigation bar to try my Add 2 Numbers projects.</p>
+  <!-- About Section -->
+  <div class="w3-content w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">About Me</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>
+      Hello! I'm Arlton Lance Diaz, a passionate web developer and designer who loves building responsive, user-friendly websites. 
+      I focus on creating modern digital experiences that combine simplicity, performance, and creativity. 
+      My goal is to help people and organizations have a meaningful online presence.
+    </p>
+    <p>
+      I enjoy exploring new technologies, improving my skills, and experimenting with web design trends. 
+      When I’m not coding, I like reading, walking outdoors, and discovering new design inspirations.
+    </p>
   </div>
-</div>
 
+  <!-- Portfolio Section -->
+  <div class="w3-content w3-text-grey w3-padding-64" id="portfolio">
+    <h2 class="w3-text-light-grey">Portfolio</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>Here are some of my projects and work samples...</p>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+    <h2 class="w3-text-light-grey">Contact Me</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <div class="w3-section">
+      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Davao City, Philippines</p>
+      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +63 0964 818 7305</p>
+      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Email: adiaz2@addu.edu.ph</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-github w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">
+      Powered by <a href="https://www.w3schools.com/w3css/" target="_blank" class="w3-hover-text-green">w3.css</a>
+    </p>
+  </footer>
+
+</div>
 </body>
 </html>
