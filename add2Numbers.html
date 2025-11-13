@@ -1,38 +1,123 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Add Two Numbers</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 30px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    h1 {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 48%;
+        background-color: #000;
+        color: #fff;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #333;
+    }
+
+    #sum {
+        margin-top: 10px;
+        background-color: #f0f0f0;
+    }
+
+    a {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #000;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+</head>
 <body>
 
-<h1>Add two numbers Version 2 - Using Input and Labels</h1>
+<div class="container">
+<h1>Add Two Numbers</h1>
 
-<p>
 <label for="n1">First Number</label> 
 <input id="n1" name="n1" type="number">
+
 <label for="n2">Second Number</label> 
 <input id="n2" name="n2" type="number">
 
-<button onclick="computesum()"> Compute Sum </button>
- <button onclick="clearvalues()"> Clear Values </button>
-</p>
- 
-<p>
+<div class="button-group">
+<button onclick="computesum()">Compute Sum</button>
+<button onclick="clearvalues()">Clear Values</button>
+</div>
+
 <label for="sum" id="sumlabel">The sum is:</label>  
-<input id="sum" name="sum" type="number" readonly></input>
-</p>
-   <br> 
- <p>  
-  <a href="index.html">Back to Home Page</a>
-</p>
+<input id="sum" name="sum" type="number" readonly>
+
+<a href="index.html">Back to Home Page</a>
+</div>
+
 <script>
 function computesum()
 {
   var x,y;
 
   // Retrieve the user input 
-  x = document.getElementById("n1").value*1;  // *1 Converts the result to number
-  y = document.getElementById("n2").value*1;  // to avoid having to use parseFloat
-
- // console.log(x);
- // console.log(y);
+  x = document.getElementById("n1").value*1;
+  y = document.getElementById("n2").value*1;
 
   // Compute the sum
   let z  = x+y;
@@ -41,20 +126,16 @@ function computesum()
   document.getElementById("sumlabel").innerHTML='The sum of '
        +x+' and '+y+' is:';
    document.getElementById("sum").value=z;
-
 }
 
 function clearvalues()
 {
-   var x,y;
-
-  // Retrieve the user input 
   document.getElementById("n1").value='';
   document.getElementById("n2").value='';
-   document.getElementById("sumlabel").innerHTML='The sum is:'
+  document.getElementById("sumlabel").innerHTML='The sum is:';
   document.getElementById("sum").value='';
- 
 }
 </script>
+
 </body>
 </html>
