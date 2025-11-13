@@ -1,99 +1,230 @@
 <!DOCTYPE html>
-<html> 
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="style.css" /> 
- </head>
-<body>
-<div id="maindiv">
-   <div id ="footerdiv">
-      <h2 id="pagefooter">Copyright 2023</h2>     
-   </div>
-      <div id ="headerdiv">
-      <h2 id="pageheader">Shopping Cart</h2>     
-   </div>
-   <div id="inputdiv">
-      <h3>Choose Item</h3>
-      <label class="inputlabel" for="itemselect">Item:</label>    
-      <select id="itemselect">
-      <option value="sardines">sardines</option>
-      <option value="hotdog">hotdog</option>
-      <option value="shampoo">shampoo</option>
-      <option value="toothpaste">toothpaste</option>
-      <option value="noodles">noodles</option>
-      </select>
-      <br>
-      <label class="inputlabel" for="qty">Quantity:</label>
-      <input id="qty" class="alignright" type="number" ></input><br>
-      <label class="inputlabel" for="price">Unit Price:</label>
-      <input id="price" type="number"></input><br>
-      <label class="inputlabel" for="amount">Amount:</label>
-      <input id="amount" type="number" readonly></input><br>
-      <br><br>
-      <a href="index.html">Back to Home</a>
-   </div>
-   <div id="buttonsdiv">
-       <button id="btnaddtocart">Add Item</button>
-       <br><br>
-       <button id="btnclearcart">Clear Cart</button> 
-   </div>
-   <div id="cartdiv">
-      <h3>Cart Items</h3>
-      <table id="itemstable" border=1>
-          <thead>
-              <tr>
-                  <td>Item No.</td>
-                  <td id="itemdesc">Item Description</td>
-                  <td>Quantity</td>
-                  <td id="pricecolumn">Price</td>
-                  <td id="amountcolumn">Amount</td>
-              </tr>
-          </thead>
-          <tbody id="tablebody">
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Total</td>
-                  <td id="totalamount"></td>
-              </tr>
-          </tfoot>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
 
-      </table>
-      <br><br>
-          <label class="inputline" for="items">Cart Items:</label>
-          <input id="items"  type="number" readonly></input>
-          
-          <label class="inputline" for="delitem">Delete Item:</label>
-          <input id="delitem" type="number"></input>
-          <button id="btndelete">Delete</button>
-          
-   </div>
+    #maindiv {
+        max-width: 900px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    #headerdiv {
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    #pageheader {
+        margin: 0;
+    }
+
+    #inputdiv, #cartdiv {
+        padding: 20px;
+    }
+
+    #buttonsdiv {
+        text-align: center;
+        padding: 15px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    h3 {
+        color: #333;
+        border-bottom: 2px solid #007bff;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    label {
+        display: inline-block;
+        width: 150px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input, select {
+        padding: 6px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    input[readonly] {
+        background-color: #f0f0f0;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #itemstable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    #itemstable th, #itemstable td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+    }
+
+    #itemstable th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    #footerdiv {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #dlgConfirmCancel, #dlgAreYouSure {
+        border: none;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    #dlgConfirmCancel button, #dlgAreYouSure button {
+        margin: 5px;
+        padding: 6px 12px;
+    }
+
+</style>
+</head>
+<body>
+
+<div id="maindiv">
+    <div id="headerdiv">
+        <h2 id="pageheader">🛒 Shopping Cart</h2>
+    </div>
+
+    <div id="inputdiv">
+        <h3>Choose Item</h3>
+        <br>
+        <label for="itemselect">Item:</label>
+        <select id="itemselect">
+            <option value="sardines">Sardines</option>
+            <option value="hotdog">Hotdog</option>
+            <option value="shampoo">Shampoo</option>
+            <option value="toothpaste">Toothpaste</option>
+            <option value="noodles">Noodles</option>
+        </select>
+        <br>
+
+        <label for="qty">Quantity:</label>
+        <input id="qty" type="number">
+        <br>
+
+        <label for="price">Unit Price:</label>
+        <input id="price" type="number">
+        <br>
+
+        <label for="amount">Amount:</label>
+        <input id="amount" type="number" readonly>
+        <br><br>
+
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <div id="buttonsdiv">
+        <button id="btnaddtocart">Add Item</button>
+        <button id="btnclearcart" style="background-color:#dc3545;">Clear Cart</button>
+    </div>
+
+    <div id="cartdiv">
+        <h3>Cart Items</h3>
+        <table id="itemstable">
+            <thead>
+                <tr>
+                    <th>Item No.</th>
+                    <th>Item Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="tablebody"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td><b>Total</b></td>
+                    <td id="totalamount"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <br>
+
+        <label for="items">Cart Items:</label>
+        <input id="items" type="number" readonly>
+
+        <label for="delitem">Delete Item:</label>
+        <input id="delitem" type="number">
+        <button id="btndelete" style="background-color:#ff9800;">Delete</button>
+    </div>
+
+    <div id="footerdiv">
+        <h2 id="pagefooter">Copyright 2023</h2>
+    </div>
 </div>
 
-<!-- Simple pop-up dialog box, containing a form THIS IS NOT DISPLAYED BY DEFAULT -->
-<!--  this is only displayed by dlgConfirmCancel.showModal() -->
-<!-- The value assigned to the button is retrieved by e.target.returnvalue -->
+<!-- Dialogs -->
 <dialog id="dlgConfirmCancel">
     <form method="dialog">
-       <h4 id="dlgmsg"></h4>   
-       <button id="btnConfirm" value="confirm" >Confirm</button>
-       <button id="btnCancel" value="cancel" >Cancel</button>
-       
+        <h4 id="dlgmsg"></h4>   
+        <button id="btnConfirm" value="confirm">Confirm</button>
+        <button id="btnCancel" value="cancel">Cancel</button>
     </form>
 </dialog>
 
 <dialog id="dlgAreYouSure">
     <form method="dialog">
-       <h4 id="dlgmsg2">Are you sure?</h4>   
-       <button id="btnYes" value="yes" >Yes</button>
-       <button id="btnNo" value="no" >No</button>
-       
+        <h4 id="dlgmsg2">Are you sure?</h4>   
+        <button id="btnYes" value="yes">Yes</button>
+        <button id="btnNo" value="no">No</button>
     </form>
 </dialog>
 
 <script src="shoppingcart6.js"></script>
-
 </body>
 </html>
