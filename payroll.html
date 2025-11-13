@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payroll System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      margin: 5px 0;
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    button {
+      padding: 8px 16px;
+      margin: 10px 5px;
+      cursor: pointer;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background-color: white;
+    }
+    th, td {
+      border: 1px solid #888;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Payroll Management System</h1>
+
+  <div>
+    <label for="name">Employee Name:</label>
+    <input type="text" id="name"><br>
+
+    <label for="daysWorked">Days Worked:</label>
+    <input type="number" id="daysWorked"><br>
+
+    <label for="dailyRate">Daily Rate:</label>
+    <input type="number" id="dailyRate"><br>
+
+    <label for="deduction">Deduction Amount:</label>
+    <input type="number" id="deduction"><br>
+
+    <button onclick="addEmployee()">Add Employee</button>
+    <button onclick="deleteEmployee()">Delete Employee</button>
+  </div>
+
+  <table id="payrollTable">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Employee Name</th>
+        <th>Days Worked</th>
+        <th>Daily Rate</th>
+        <th>Gross Pay</th>
+        <th>Deduction Amount</th>
+        <th>Net Pay</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+  </table>
+
+  <script>
+    let payrollList = [];
+
+    function addEmployee() {
+      let name = document.getElementById("name").value;
+      let daysWorked = parseFloat(document.getElementById("daysWorked").value);
+      let dailyRate = parseFloat(document.getElementById("dailyRate").value);
+      let deduction = parseFloat(document.getElementById("deduction").value);
+
+      if (!name || isNaN(daysWorked) || isNaN(dailyRate) || isNaN(deduction)) {
+        alert("Please fill out all fields correctly!");
+        return;
+      }
+
+      let grossPay = daysWorked * dailyRate;
+      let netPay = grossPay - deduction;
+
+      payrollList.push({
+        name: name,
+        daysWorked: daysWorked,
+        dailyRate: dailyRate,
+        grossPay: grossPay,
+        deduction: deduction,
+        netPay: netPay
+      });
+
+      updateTable();
+      clearInputs();
+    }
+
+    function deleteEmployee() {
+      let lineNum = prompt("Enter Line Number to Delete:");
+      lineNum = parseInt(lineNum);
+
+      if (isNaN(lineNum) || lineNum < 1 || lineNum > payrollList.length) {
+        alert("Invalid line number!");
+        return;
+      }
+
+      payrollList.splice(lineNum - 1, 1);
+      updateTable();
+    }
+
+    function updateTable() {
+      let tbody = document.getElementById("tableBody");
+      tbody.innerHTML = "";
+
+      payrollList.forEach((emp, index) => {
+        let row = `<tr>
+          <td>${index + 1}</td>
+          <td>${emp.name}</td>
+          <td>${emp.daysWorked}</td>
+          <td>${emp.dailyRate.toFixed(2)}</td>
+          <td>${emp.grossPay.toFixed(2)}</td>
+          <td>${emp.deduction.toFixed(2)}</td>
+          <td>${emp.netPay.toFixed(2)}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    function clearInputs() {
+      document.getElementById("name").value = "";
+      document.getElementById("daysWorked").value = "";
+      document.getElementById("dailyRate").value = "";
+      document.getElementById("deduction").value = "";
+    }
+  </script>
+
+</body>
+</html>
