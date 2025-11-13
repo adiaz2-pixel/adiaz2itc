@@ -10,7 +10,7 @@
 <input id="items" type="number">
 <label for="base">Type the base of Computation:</label>
 <input id="base" type="number">
-<button id="computegrade">Compuation Grade</button>
+<button onclick="computegrade()">Compuation Grade</button>
 <br><br>
 <label for="grade">Grade:</label>
 <input id="grade" type="number">
@@ -23,10 +23,7 @@
 
  <a href="index.html">Back to Home Page</a>
 <script>
-
-    //document.getElementById("computegrade").addEventListener("click",
-    //function()
-    document.getElementById("computegrade").addEventListener("click",()=>
+    function computegrade()
     {
         var score, items, base, g, lg;
 
@@ -74,7 +71,7 @@
     document.getElementById("gradecomment").innerHTML = 
           'The grade is '+gradecomment;
 
-    });
+    }
 </script>
 </body>
 </html>
