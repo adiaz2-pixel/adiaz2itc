@@ -5,17 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shopping Cart</title>
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background-color: #f5f5f5;
-        color: #222;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", Arial, sans-serif; background-color: #f5f5f5; color: #222; }
 
     /* Main Container - Bigger Box */
     #maindiv {
@@ -30,179 +21,43 @@
     }
 
     /* Header */
-    #headerdiv {
-        background-color: #222;
-        color: white;
-        padding: 20px;
-        text-align: center;
-    }
-
-    #pageheader {
-        margin: 0;
-        font-size: 1.6em; /* smaller font */
-        font-weight: 600;
-    }
+    #headerdiv { background-color: #222; color: white; padding: 20px; text-align: center; }
+    #pageheader { margin: 0; font-size: 1.6em; font-weight: 600; }
 
     /* Input Section */
-    #inputdiv {
-        padding: 20px;
-    }
-
-    h3 {
-        color: #333;
-        border-bottom: 2px solid #aaa;
-        display: inline-block;
-        margin-bottom: 20px;
-        font-size: 1em; /* smaller font */
-        text-transform: uppercase;
-    }
-
-    label {
-        display: inline-block;
-        width: 150px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 10px;
-        font-size: 0.9em; /* smaller */
-    }
-
-    input, select {
-        padding: 6px 10px; /* smaller */
-        width: 220px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fafafa;
-        font-size: 0.9em; /* smaller */
-    }
-
-    input[readonly] {
-        background-color: #eee;
-        color: #555;
-    }
-
-    a {
-        display: inline-block;
-        margin-top: 10px;
-        color: #555;
-        text-decoration: none;
-        font-size: 0.9em;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
+    #inputdiv { padding: 20px; }
+    h3 { color: #333; border-bottom: 2px solid #aaa; display: inline-block; margin-bottom: 20px; font-size: 1em; text-transform: uppercase; }
+    label { display: inline-block; width: 150px; font-weight: 600; color: #333; margin-bottom: 10px; font-size: 0.9em; }
+    input, select { padding: 6px 10px; width: 220px; border: 1px solid #ccc; border-radius: 5px; background-color: #fafafa; font-size: 0.9em; }
+    input[readonly] { background-color: #eee; color: #555; }
+    a { display: inline-block; margin-top: 10px; color: #555; text-decoration: none; font-size: 0.9em; }
+    a:hover { text-decoration: underline; }
 
     /* Buttons */
-    #buttonsdiv {
-        text-align: center;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-    }
-
-    button {
-        background-color: #333;
-        color: white;
-        padding: 6px 12px; /* smaller */
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 0 5px;
-        font-weight: 600;
-        font-size: 0.9em; /* smaller */
-    }
-
-    button:hover {
-        background-color: #555;
-    }
-
-    #btnclearcart {
-        background-color: #b33;
-    }
-
-    #btnclearcart:hover {
-        background-color: #a00;
-    }
-
-    #btndelete {
-        background-color: #888;
-    }
-
-    #btndelete:hover {
-        background-color: #666;
-    }
+    #buttonsdiv { text-align: center; padding: 20px; background-color: #f0f0f0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    button { background-color: #333; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; margin: 0 5px; font-weight: 600; font-size: 0.9em; }
+    button:hover { background-color: #555; }
+    #btnclearcart { background-color: #b33; }
+    #btnclearcart:hover { background-color: #a00; }
+    #btndelete { background-color: #888; }
+    #btndelete:hover { background-color: #666; }
 
     /* Cart Section */
-    #cartdiv {
-        padding: 20px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-        font-size: 0.95em; /* smaller font */
-    }
-
-    th, td {
-        border: 1px solid #ccc;
-        padding: 10px; /* smaller */
-        text-align: center;
-    }
-
-    th {
-        background-color: #222;
-        color: white;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    tfoot td {
-        font-weight: bold;
-        background-color: #f0f0f0;
-    }
+    #cartdiv { padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95em; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #222; color: white; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    tfoot td { font-weight: bold; background-color: #f0f0f0; }
 
     /* Footer */
-    #footerdiv {
-        background-color: #222;
-        color: white;
-        text-align: center;
-        padding: 12px;
-        font-size: 14px; /* smaller */
-    }
+    #footerdiv { background-color: #222; color: white; text-align: center; padding: 12px; font-size: 14px; }
 
     /* Dialog Boxes */
-    dialog {
-        border: none;
-        border-radius: 10px;
-        padding: 20px 25px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        background-color: #fff;
-    }
-
-    dialog h4 {
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 1em; /* smaller */
-    }
-
-    dialog button {
-        margin: 5px;
-        padding: 6px 12px; /* smaller */
-        background-color: #333;
-        color: white;
-        border-radius: 5px;
-        border: none;
-        font-size: 0.9em; /* smaller */
-    }
-
-    dialog button:hover {
-        background-color: #555;
-    }
-
+    dialog { border: none; border-radius: 10px; padding: 20px 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background-color: #fff; }
+    dialog h4 { color: #333; margin-bottom: 15px; font-size: 1em; }
+    dialog button { margin: 5px; padding: 6px 12px; background-color: #333; color: white; border-radius: 5px; border: none; font-size: 0.9em; }
+    dialog button:hover { background-color: #555; }
 </style>
 </head>
 <body>
@@ -218,11 +73,13 @@
 
         <label for="itemselect">Item:</label>
         <select id="itemselect">
-            <option value="sardines">Sardines</option>
-            <option value="hotdog">Hotdog</option>
-            <option value="shampoo">Shampoo</option>
-            <option value="toothpaste">Toothpaste</option>
-            <option value="noodles">Noodles</option>
+            <option value="pencil">Pencil</option>
+            <option value="paper">Paper</option>
+            <option value="eraser">Eraser</option>
+            <option value="table">Table</option>
+            <option value="backpack">Backpack</option>
+            <option value="shirt">Shirt</option>
+            <option value="ballpen">Ballpen</option>
         </select>
         <br>
 
