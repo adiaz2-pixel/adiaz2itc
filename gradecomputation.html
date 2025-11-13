@@ -5,78 +5,79 @@
 <title>Grade Computation</title>
 <style>
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #000;
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
+        margin: 0;
         padding: 20px;
     }
 
     .container {
-        background: #ffffff;
-        padding: 30px 40px;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        background-color: #fff;
+        padding: 30px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         width: 100%;
-        max-width: 450px;
+        max-width: 400px;
     }
 
     h1 {
-        color: #1e3a8a;
         text-align: center;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
+        font-weight: bold;
     }
 
     label {
         display: block;
         margin-top: 15px;
         font-weight: bold;
-        color: #334155;
     }
 
     input[type="number"], input[type="text"] {
         width: 100%;
-        padding: 10px 12px;
+        padding: 10px;
         margin-top: 5px;
-        border-radius: 8px;
-        border: 1px solid #cbd5e1;
-        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-sizing: border-box;
     }
 
     button {
         margin-top: 20px;
         padding: 12px;
         width: 100%;
-        background-color: #3b82f6;
-        color: white;
-        font-size: 16px;
+        background-color: #000;
+        color: #fff;
+        font-size: 14px;
         border: none;
-        border-radius: 10px;
+        border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
 
     button:hover {
-        background-color: #2563eb;
+        background-color: #333;
     }
 
     #gradecomment {
         margin-top: 25px;
         text-align: center;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
-        color: #1f2937;
     }
 
     a {
         display: block;
-        margin-top: 30px;
+        margin-top: 20px;
         text-align: center;
-        color: #3b82f6;
+        color: #000;
         text-decoration: none;
-        font-weight: 500;
+        font-size: 14px;
     }
 
     a:hover {
@@ -88,23 +89,25 @@
 
 <div class="container">
 <h1>Grade Computation</h1>
-<br><br>
+
 <label for="score">Type the score:</label>
 <input id="score" type="number">
+
 <label for="items">Type the items:</label>
 <input id="items" type="number">
+
 <label for="base">Type the base of Computation:</label>
 <input id="base" type="number">
-<button onclick="computegrade()">Compuation Grade</button>
-<br><br>
+
+<button onclick="computegrade()">Computation Grade</button>
+
 <label for="grade">Grade:</label>
 <input id="grade" type="number">
+
 <label for="lettergrade">Equivalent Grade:</label>
 <input id="lettergrade" type="text">
-<br><br>
-<h1 id="gradecomment"></h1>
 
-<br><br>
+<h1 id="gradecomment"></h1>
 
 <a href="index.html">Back to Home Page</a>
 </div>
@@ -149,9 +152,10 @@
             default: gradecomment="an Excellent Grade";
         }
 
-    document.getElementById("gradecomment").innerHTML = 
+        document.getElementById("gradecomment").innerHTML = 
           'The grade is '+gradecomment;
     }
 </script>
+
 </body>
 </html>
