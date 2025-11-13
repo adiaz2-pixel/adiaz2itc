@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Tax Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+  }
+  h2 {
+    text-align: center;
+  }
+  #container {
+    background-color: white;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  label {
+    display: inline-block;
+    width: 180px;
+    margin-top: 10px;
+  }
+  input[type="number"] {
+    width: 200px;
+    padding: 5px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #555;
+  }
+  .result {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <h2>Income Tax Calculator</h2>
+
+  <label for="income">Enter Net Taxable Income (₱):</label>
+  <input type="number" id="income" placeholder="e.g. 520000"><br>
+
+  <button onclick="computeTax()">Compute Tax</button>
+
+  <div class="result">
+    <p><strong>Basic Tax:</strong> ₱<span id="basicTax">0.00</span></p>
+    <p><strong>Rate Applied:</strong> <span id="rate">0%</span></p>
+    <p><strong>Total Income Tax:</strong> ₱<span id="tax">0.00</span></p>
+  </div>
+
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+function computeTax() {
+  let income = parseFloat(document.getElementById("income").value);
+  let tax = 0;
+  let basic = 0;
+  let rate = "";
+
+  if (isNaN(income) || income < 0) {
+    alert("Please enter a valid taxable income.");
+    return;
+  }
+
+  if (income <= 250000) {
+    basic = 0;
+    tax = 0;
+    rate = "0%";
+  } 
+  else if (income <= 400000) {
+    basic = 0;
+    tax = (income - 250000) * 0.20;
+    rate = "20% of excess over ₱250,000";
+  } 
+  else if (income <= 800000) {
+    basic = 30000;
+    tax = 30000 + (income - 400000) * 0.25;
+    rate = "₱30,000 + 25% of excess over ₱400,000";
+  } 
+  else if (income <= 2000000) {
+    basic = 130000;
+    tax = 130000 + (income - 800000) * 0.30;
+    rate = "₱130,000 + 30% of excess over ₱800,000";
+  } 
+  else if (income <= 8000000) {
+    basic = 490000;
+    tax = 490000 + (income - 2000000) * 0.32;
+    rate = "₱490,000 + 32% of excess over ₱2,000,000";
+  } 
+  else {
+    basic = 2410000;
+    tax = 2410000 + (income - 8000000) * 0.35;
+    rate = "₱2,410,000 + 35% of excess over ₱8,000,000";
+  }
+
+  document.getElementById("basicTax").textContent = basic.toLocaleString(undefined, {minimumFractionDigits: 2});
+  document.getElementById("rate").textContent = rate;
+  document.getElementById("tax").textContent = tax.toLocaleString(undefined, {minimumFractionDigits: 2});
+}
+</script>
+</body>
+</html>
