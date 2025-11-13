@@ -1,56 +1,61 @@
+
 <!DOCTYPE html>
 <html>
 <body>
-    <h1>ADD 2 numbers</h1>
-    <br><br>
 
-    <label for="n1">Type the 1st Number:</label> 
-    <input id="n1" type="number"> 
-    <label for="n2">Type the 2nd Number:</label> 
-    <input id="n2" type="number">
-    
-    <button id="clearvalues">Clear values</button>
-    <br>
-    <label for="sum">The sum is::</label> 
-    <input id="sum" type="number" readonly>
+<h1>Add two numbers Version 2 - Using Input and Labels</h1>
 
-    <br><br>
+<p>
+<label for="n1">First Number</label> 
+<input id="n1" name="n1" type="number">
+<label for="n2">Second Number</label> 
+<input id="n2" name="n2" type="number">
 
-    <a href="index.html">Back to Home Page</a>
-    <script>
+<button onclick="computesum()"> Compute Sum </button>
+ <button onclick="clearvalues()"> Clear Values </button>
+</p>
+ 
+<p>
+<label for="sum" id="sumlabel">The sum is:</label>  
+<input id="sum" name="sum" type="number" readonly></input>
+</p>
+   <br> 
+ <p>  
+  <a href="index.html">Back to Home Page</a>
+</p>
+<script>
+function computesum()
+{
+  var x,y;
 
-    document.getElementById("clearvalues").addEventListener("click",
-       function()
-       {
-           document.getElementById("n1").value =' ';
-           document.getElementById("n2").value =' ';
-           document.getElementById("sum").value =' ';
-       }
-    );
+  // Retrieve the user input 
+  x = document.getElementById("n1").value*1;  // *1 Converts the result to number
+  y = document.getElementById("n2").value*1;  // to avoid having to use parseFloat
 
-    document.getElementById("n1").addEventListener("keyup",
-       function()
-       {
-          computesum();
-       }
-    );
+ // console.log(x);
+ // console.log(y);
 
-    document.getElementById("n2").addEventListener("keyup",
-       function()
-       {
-          computesum();
-       }
-    );
+  // Compute the sum
+  let z  = x+y;
 
-    function computesum()
-    {   var x1, x2, x3;
+  // Display the result
+  document.getElementById("sumlabel").innerHTML='The sum of '
+       +x+' and '+y+' is:';
+   document.getElementById("sum").value=z;
 
-        x1 = document.getElementById("n1").value*1;
-        x2 = document.getElementById("n2").value*1;
+}
 
-        x3 = x1+ x2;
-        document.getElementById("sum").value = x3;
-    }
-    </script>
+function clearvalues()
+{
+   var x,y;
+
+  // Retrieve the user input 
+  document.getElementById("n1").value='';
+  document.getElementById("n2").value='';
+   document.getElementById("sumlabel").innerHTML='The sum is:'
+  document.getElementById("sum").value='';
+ 
+}
+</script>
 </body>
 </html>
